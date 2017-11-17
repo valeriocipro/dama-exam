@@ -178,11 +178,6 @@ public sealed class Chessboard
             Owner = null;
         }
 
-        public string GetCoordinates()
-        {
-            return ('A' + horizontal) + "" + (vertical + 1);
-        }
-
         public override string ToString()
         {
             if (IsFree())
