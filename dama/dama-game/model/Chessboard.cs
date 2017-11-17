@@ -182,7 +182,7 @@ public sealed class Chessboard
         {
             if (IsFree())
             {
-                return "X";
+                return " ";
             }
             else return Owner.ToString();
         }
