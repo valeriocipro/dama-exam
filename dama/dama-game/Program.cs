@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace dama_game
 {
@@ -6,8 +7,24 @@ namespace dama_game
     {
         static void Main(string[] args)
         {
-            var p1 = new Player("Matteo");
-            var p2 = new PlayerMediumComputer("CPU1");
+            Opponent cr = new Opponent();
+            int x, y;
+
+            //creazione p1
+            Console.WriteLine("Creating player 1...\n");
+            Thread.Sleep(750);
+            y = crPlayer();
+            var p1 = cr.Opp(y);
+
+            //creazione p2
+            Console.WriteLine("\n\nCreating player 2...");
+            Thread.Sleep(750);
+            x = crPlayer();
+            var p2 = cr.Opp(x);
+
+            Console.WriteLine("\n"+p1.Name +" VS "+ p2.Name);
+            Console.ReadLine();
+
             IPlayer toMove = p1;
 
             int xs, ys, xe, ye;
@@ -62,6 +79,22 @@ namespace dama_game
 
             Console.WriteLine("Winner is {0} with score {1}", b.Winner.Name, b.Winner.Score);
             Console.WriteLine("Loser is {0} with score {1}", b.Loser.Name, b.Loser.Score);
+        }
+
+        public static int crPlayer()
+        {
+            int y;
+            bool k = false;
+
+            Console.WriteLine("Select difficulty: 1(Easy), 2(Medium), 3(Hard) or a random number to select a real player.");
+            Thread.Sleep(750);
+            do
+            {
+                if (!(k = int.TryParse(Console.ReadLine(), out y)))
+                    Console.WriteLine("Wrong input, retry.");
+            } while (!k);
+
+            return y;
         }
     }
 }

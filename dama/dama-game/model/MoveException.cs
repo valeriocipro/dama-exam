@@ -10,7 +10,6 @@ internal class MoveException : Exception
 
     public MoveException(string message) : base(message)
     {
-        throw new Exception(message);
     }
 
     public MoveException(string message, Exception innerException) : base(message, innerException)

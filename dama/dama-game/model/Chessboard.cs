@@ -87,12 +87,12 @@ public sealed class Chessboard
         Box jumpedBox = null;
         if(xEnd < 0 || xEnd > 7 || yEnd < 0 || yEnd > 7)
         {
-            new MoveException("Illegal move outside of the board.");
+            throw new MoveException("Illegal move outside of the board.");
         }
 
         var startBox = boxes[xStart, yStart];
         if(startBox.IsFree() || !startBox.Owner.Equals(p))
-            new MoveException("Empty box or it is not yours.");
+            throw new MoveException("Empty box or it is not yours.");
 
         var arrivalBox = boxes[xEnd, yEnd];
 
@@ -119,7 +119,7 @@ public sealed class Chessboard
             }
 
             if (boxes[xInter, yInter].Owner == p || boxes[xInter, yInter] == null)
-                new MoveException("Illegal move.");
+                throw new MoveException("Illegal move.");
             else
                 jumpedBox = boxes[xInter, yInter];
 
@@ -127,7 +127,7 @@ public sealed class Chessboard
         else if (Math.Abs(xStart - xEnd) > 2 || Math.Abs(yStart - yEnd) > 2 ||
                Math.Abs(xStart - xEnd) == 0 || Math.Abs(yStart - yEnd) == 0)
         {
-            new MoveException("Illegal move.");
+            throw new MoveException("Illegal move.");
         }
 
 
@@ -151,11 +151,11 @@ public sealed class Chessboard
         }
         else if (arrivalBox.Owner.Equals(p))
         {
-            new MoveException("You already own this box.");
+            throw new MoveException("You already own this box.");
         }
         else
         {
-            new MoveException("This box is owned by the enemy.");
+            throw new MoveException("This box is owned by the enemy.");
         }
     }
 
