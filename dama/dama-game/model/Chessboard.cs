@@ -96,6 +96,9 @@ public sealed class Chessboard
 
         var arrivalBox = boxes[xEnd, yEnd];
 
+        if (p == player1 && yEnd == 7 || p == player2 && yEnd == 0)
+            Winner = p;
+
         if (Math.Abs(xStart - xEnd) == 2 && Math.Abs(yStart - yEnd) == 2)
         {
             //It is a jump
@@ -121,7 +124,12 @@ public sealed class Chessboard
             if (boxes[xInter, yInter].Owner == p || boxes[xInter, yInter] == null)
                 throw new MoveException("Illegal move.");
             else
+            {
                 jumpedBox = boxes[xInter, yInter];
+                if (p == player1 && yEnd == 7 || p == player2 && yEnd == 0)
+                    Winner = p;
+            }
+
 
         }
         else if (Math.Abs(xStart - xEnd) > 2 || Math.Abs(yStart - yEnd) > 2 ||
@@ -148,6 +156,7 @@ public sealed class Chessboard
                     player2Score++;
                 }
             }
+
         }
         else if (arrivalBox.Owner.Equals(p))
         {

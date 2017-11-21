@@ -76,7 +76,7 @@ public class Player : IPlayer
 
     public override string ToString()
     {
-        return Name[0].ToString().ToUpper();
+        return Name[3].ToString().ToUpper();
     }
 }
 

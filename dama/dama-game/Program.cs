@@ -23,6 +23,7 @@ namespace dama_game
             var p2 = cr.Opp(x);
 
             Console.WriteLine("\n"+p1.Name +" VS "+ p2.Name);
+            Console.WriteLine("Press any key to start");
             Console.ReadLine();
 
             IPlayer toMove = p1;
@@ -65,7 +66,10 @@ namespace dama_game
 
             } while (b.Winner == null);
 
-            Console.WriteLine("Press to simulate legal move (5,1) -> (4,2)...");
+
+            won(b.Winner);
+
+            /*Console.WriteLine("Press to simulate legal move (5,1) -> (4,2)...");
             Console.ReadLine();
 
             b.MovePawn(p2, 5, 1, 4, 2);
@@ -78,7 +82,7 @@ namespace dama_game
             b.SimulatePlay();
 
             Console.WriteLine("Winner is {0} with score {1}", b.Winner.Name, b.Winner.Score);
-            Console.WriteLine("Loser is {0} with score {1}", b.Loser.Name, b.Loser.Score);
+            Console.WriteLine("Loser is {0} with score {1}", b.Loser.Name, b.Loser.Score);*/
         }
 
         public static int crPlayer()
@@ -95,6 +99,11 @@ namespace dama_game
             } while (!k);
 
             return y;
+        }
+
+        public static void won(IPlayer p)
+        {
+            Console.WriteLine("Congratulations "+p.Name+"! You won the game!");
         }
     }
 }
