@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Threading;
 
 public sealed class Chessboard
 {
@@ -9,6 +10,7 @@ public sealed class Chessboard
     public IPlayer Loser { get; private set; }
     private int player1Score = 0;
     private int player2Score = 0;
+   
 
     private Box[,] boxes;
 
@@ -35,7 +37,7 @@ public sealed class Chessboard
         }
     }
 
-    public void SimulatePlay()
+   /*public void SimulatePlay()
     {
         Random rnd = new Random();
         int winnerScore = 0;
@@ -58,7 +60,7 @@ public sealed class Chessboard
         Loser.Loser();
 
         Winner.AddScore(winnerScore, Loser);
-    }
+    }*/
 
     public override string ToString()
     {
@@ -67,9 +69,18 @@ public sealed class Chessboard
         for (int x = 0; x < 8; x++)
         {
             stb.Append(x);
+
             for (int y = 0; y < 8; y++)
             {
-                stb.Append("|" + boxes[x, y].ToString());
+                if(boxes[x,y].Owner==player1)
+                    //assing W (for White) if Player1 box
+                    stb.Append("|" + "W");
+                else if (boxes[x, y].Owner == player2)
+                    //assing B (for Black) if Player2 box
+                    stb.Append("|" + "B");
+                    //assing blank if empty
+                else
+                    stb.Append("|"+" ");
             }
             stb.AppendLine("|");
         }
@@ -96,7 +107,8 @@ public sealed class Chessboard
 
         var arrivalBox = boxes[xEnd, yEnd];
 
-        if (p == player1 && yEnd == 7 || p == player2 && yEnd == 0)
+        //win condition (reaching the other side of the board)
+        if (p == player1 && xEnd == 7 || p == player1 && xEnd == 0)
             Winner = p;
 
         if (Math.Abs(xStart - xEnd) == 2 && Math.Abs(yStart - yEnd) == 2)
@@ -121,12 +133,14 @@ public sealed class Chessboard
                 xInter = xEnd - 1;
             }
 
+            //check if you can move by two boxes (to make sure you can't eat your own pawns)
             if (boxes[xInter, yInter].Owner == p || boxes[xInter, yInter] == null)
                 throw new MoveException("Illegal move.");
             else
             {
                 jumpedBox = boxes[xInter, yInter];
-                if (p == player1 && yEnd == 7 || p == player2 && yEnd == 0)
+                //win condition (reaching the other side of the board)
+                if (p == player1 && xEnd == 7 || p == player2 && xEnd == 0)
                     Winner = p;
             }
 
@@ -156,6 +170,10 @@ public sealed class Chessboard
                     player2Score++;
                 }
             }
+
+            //win condition (eating all the enemy pawns)
+            if (player1Score == 12 || player2Score == 12)
+                Winner = p;
 
         }
         else if (arrivalBox.Owner.Equals(p))

@@ -1,33 +1,39 @@
 ﻿using System;
-using System.Threading;
+using System.Collections.Generic;
 
 namespace dama_game
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
+            List<string> moveList = new List<string>();
             Opponent cr = new Opponent();
             int x, y;
 
-            //creazione p1
+            //creating p1
             Console.WriteLine("Creating player 1...\n");
-            Thread.Sleep(750);
             y = crPlayer();
             var p1 = cr.Opp(y);
 
-            //creazione p2
+            //creating p2
             Console.WriteLine("\n\nCreating player 2...");
-            Thread.Sleep(750);
             x = crPlayer();
             var p2 = cr.Opp(x);
+
+            //changing names if they're equal
+            if (p1.Name == p2.Name)
+            {
+                p1.Name += "(1)";
+                p2.Name += "(2)";
+            }
 
             Console.WriteLine("\n"+p1.Name +" VS "+ p2.Name);
             Console.WriteLine("Press any key to start");
             Console.ReadLine();
 
             IPlayer toMove = p1;
-
+       
             int xs, ys, xe, ye;
             var b = new Chessboard(p1, p2);
             do
@@ -36,7 +42,13 @@ namespace dama_game
                     Console.Clear();
                 Console.WriteLine(b.ToString());
 
-                Console.WriteLine("Turn: {0}", toMove.Name);
+                   
+                        if (toMove == p1)
+                            Console.WriteLine("Turn: {0}", toMove.Name + " (W)");
+                        else if (toMove == p2)
+                            Console.WriteLine("Turn: {0}", toMove.Name + " (B)");
+                    
+                    
 
                 Console.WriteLine("Let move from...");
                 Console.Write("V:");
@@ -53,6 +65,8 @@ namespace dama_game
                 ye = int.Parse(Console.ReadLine());
 
                 b.MovePawn(toMove, xs, ys, xe, ye);
+                   //adding each move to moves history
+                    moveList.Add(toMove.Name+" moves from ("+xs+","+ys+") to ("+xe+","+ye+")");
 
                 if (toMove == p1)
                     toMove = p2;
@@ -66,8 +80,34 @@ namespace dama_game
 
             } while (b.Winner == null);
 
+            Console.Clear();
+            Console.WriteLine(b.ToString());
 
+            //running winning method
             won(b.Winner);
+
+
+            Console.WriteLine("Press 1 to start a new game, 2 to print the history of the game, 0 to exit");
+            int t = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+            switch (t)
+            {
+                case 1:
+                    Console.Clear();
+                    // :) starting a new game :)
+                    Main();
+                    break;
+                case 2:
+                    for (int i = 0; i < moveList.Count; i++)
+                        Console.WriteLine(moveList[i] + "\n");
+                    break;
+                case 0:
+                    break;
+                default:
+                    break;
+            }
+
+            
 
             /*Console.WriteLine("Press to simulate legal move (5,1) -> (4,2)...");
             Console.ReadLine();
@@ -90,8 +130,7 @@ namespace dama_game
             int y;
             bool k = false;
 
-            Console.WriteLine("Select difficulty: 1(Easy), 2(Medium), 3(Hard) or a random number to select a real player.");
-            Thread.Sleep(750);
+            Console.WriteLine("Select difficulty: 1(Easy), 2(Medium), 3(Hard) or 0 to select a real player.");
             do
             {
                 if (!(k = int.TryParse(Console.ReadLine(), out y)))
@@ -103,7 +142,7 @@ namespace dama_game
 
         public static void won(IPlayer p)
         {
-            Console.WriteLine("Congratulations "+p.Name+"! You won the game!");
+            Console.WriteLine("\nCongratulations "+p.Name+"! You won the game!\n\n\n\n");
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+    //factory to create players based on difficulty
     public class Opponent
     {
      public IPlayer Opp(int difficulty)
@@ -15,11 +16,15 @@ using System.Text;
             return new PlayerMediumComputer("CPUMedium");
         else if (difficulty == 3)
             return new PlayerHardComputer("CPUHard");
-        else {
+        else if (difficulty == 0)
+        {
             Console.WriteLine("\nInsert Player name: ");
             s = Console.ReadLine();
             return new Player(s);
-            }
+        }
+
+        return new PlayerMediumComputer("CPUMedium");
+
     }
  }
 
