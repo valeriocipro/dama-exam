@@ -1,0 +1,11 @@
+C:\Users\VALERIO.CIPRO\Documents\dama-exam\dama\dama-game\bin\Debug\netcoreapp2.0\dama-game.deps.json
+C:\Users\VALERIO.CIPRO\Documents\dama-exam\dama\dama-game\bin\Debug\netcoreapp2.0\dama-game.runtimeconfig.json
+C:\Users\VALERIO.CIPRO\Documents\dama-exam\dama\dama-game\bin\Debug\netcoreapp2.0\dama-game.runtimeconfig.dev.json
+C:\Users\VALERIO.CIPRO\Documents\dama-exam\dama\dama-game\bin\Debug\netcoreapp2.0\dama-game.dll
+C:\Users\VALERIO.CIPRO\Documents\dama-exam\dama\dama-game\bin\Debug\netcoreapp2.0\dama-game.pdb
+C:\Users\VALERIO.CIPRO\Documents\dama-exam\dama\dama-game\obj\Debug\netcoreapp2.0\dama-game.csprojResolveAssemblyReference.cache
+C:\Users\VALERIO.CIPRO\Documents\dama-exam\dama\dama-game\obj\Debug\netcoreapp2.0\dama-game.csproj.CoreCompileInputs.cache
+C:\Users\VALERIO.CIPRO\Documents\dama-exam\dama\dama-game\obj\Debug\netcoreapp2.0\dama-game.AssemblyInfoInputs.cache
+C:\Users\VALERIO.CIPRO\Documents\dama-exam\dama\dama-game\obj\Debug\netcoreapp2.0\dama-game.AssemblyInfo.cs
+C:\Users\VALERIO.CIPRO\Documents\dama-exam\dama\dama-game\obj\Debug\netcoreapp2.0\dama-game.dll
+C:\Users\VALERIO.CIPRO\Documents\dama-exam\dama\dama-game\obj\Debug\netcoreapp2.0\dama-game.pdb

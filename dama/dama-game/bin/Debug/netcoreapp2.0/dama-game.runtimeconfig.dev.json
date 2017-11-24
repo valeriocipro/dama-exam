@@ -1,0 +1,9 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\VALERIO.CIPRO\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\VALERIO.CIPRO\\.nuget\\packages",
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ]
+  }
+}
